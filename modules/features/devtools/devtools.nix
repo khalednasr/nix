@@ -23,7 +23,7 @@ in
   perSystem =
     { pkgs, ... }:
     {
-      devShells.default = pkgs.mkShell { packages = packages_from pkgs; };
+      devShells.devtools = pkgs.mkShell { packages = packages_from pkgs; };
 
       packages.devtools = pkgs.symlinkJoin {
         name = "devtools";
