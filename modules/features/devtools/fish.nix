@@ -9,6 +9,7 @@ let
         pkgs.zoxide
         pkgs.fzf
         pkgs.direnv
+        pkgs.starship
         self.packages.${pkgs.stdenv.hostPlatform.system}.yazi
       ];
 
@@ -24,6 +25,9 @@ let
 
           alias cd="z"
           zoxide init fish | source
+
+          set -x STARSHIP_CONFIG ${starshipConfig}/starship.toml
+          starship init fish | source
 
           ${yaziIntegration}
         '';
@@ -50,6 +54,11 @@ let
         mkdir -p "$out"
         ln -s ${direnvConfig} $out/direnv.toml
         ln -s ${direnvrc} $out/direnvrc
+      '';
+
+      starshipConfig = pkgs.runCommand "STARSHIP_CONFIG" { } ''
+        mkdir -p "$out"
+        ${pkgs.starship}/bin/starship preset pure-preset -o $out/starship.toml
       '';
 
       yaziIntegration = ''
