@@ -20,22 +20,4 @@ in
     {
       packages.${name} = customPackage pkgs;
     };
-
-  den.aspects.${name} = {
-    nixos =
-      { pkgs, ... }:
-      {
-        environment.systemPackages = [
-          (customPackage pkgs)
-        ];
-      };
-
-    homeManager =
-      { pkgs, ... }:
-      {
-        home.packages = [
-          (customPackage pkgs)
-        ];
-      };
-  };
 }

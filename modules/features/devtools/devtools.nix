@@ -4,6 +4,7 @@ let
     self.packages.${pkgs.stdenv.hostPlatform.system}.fish
     self.packages.${pkgs.stdenv.hostPlatform.system}.git
     self.packages.${pkgs.stdenv.hostPlatform.system}.yazi
+    self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
   ];
 in
 {
