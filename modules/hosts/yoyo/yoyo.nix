@@ -4,7 +4,7 @@
 
   den.aspects.yoyo = {
     includes = [
-      den.aspects.tui
+      den.aspects.gui
     ];
   };
 }

@@ -1,4 +1,7 @@
 { den, self, ... }:
+let
+  shell_from = pkgs: self.packages.${pkgs.stdenv.hostPlatform.system}.fish;
+in
 {
   den.aspects.nasrk = {
     includes = [
@@ -11,7 +14,7 @@
         users.users.nasrk = {
           description = "Khaled Nasr";
 
-          shell = self.packages.${pkgs.stdenv.hostPlatform.system}.fish;
+          shell = shell_from pkgs;
 
           openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHL6+vtrOsjN4WC1PW+/eCBPmXSLUwjvtgakT22/hXk nasrk@yoyo"
@@ -24,5 +27,23 @@
         console.keyMap = "de";
       };
 
+    homeManager =
+      { pkgs, ... }:
+      let
+        repoDir = "/home/nasrk/nix";
+      in
+      {
+        programs.fish.enable = true;
+
+        home.shellAliases = {
+          nec = "cd ${repoDir} && nvim; cd -";
+          nrb = "sudo nixos-rebuild switch --flake ${repoDir}";
+          ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d";
+
+          nstatus = "cd ${repoDir}; git status; cd -";
+          npush = "cd ${repoDir}; git add --all; git commit -m 'update'; git push; cd -";
+          npull = "cd ${repoDir}; git pull; cd -";
+        };
+      };
   };
 }
