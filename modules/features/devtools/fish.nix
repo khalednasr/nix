@@ -18,6 +18,8 @@ let
         text = ''
           set fish_greeting
 
+          set -x EDITOR nvim
+
           set -x DIRENV_CONFIG ${direnvConfigHome}
           direnv hook fish | source
 

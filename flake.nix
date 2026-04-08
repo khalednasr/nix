@@ -15,6 +15,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree.url = "github:vic/import-tree";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
     nixpkgs-lib.follows = "nixpkgs";

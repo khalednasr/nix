@@ -34,6 +34,7 @@ in
       in
       {
         programs.fish.enable = true;
+        programs.fish.package = shell_from pkgs;
 
         home.shellAliases = {
           nec = "cd ${repoDir} && nvim; cd -";
