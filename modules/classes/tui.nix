@@ -12,6 +12,7 @@
       den.aspects.wireguard
       den.aspects.firewall
       den.aspects.timezone
+      den.aspects.syncthing
       den.aspects.tuigreet
 
       den.aspects.devtools
