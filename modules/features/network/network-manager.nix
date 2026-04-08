@@ -16,11 +16,5 @@
           67
         ];
       };
-
-    provides.to-users =
-      { user, ... }:
-      {
-        nixos.users.users.${user}.extraGroups = [ "networkmanager" ];
-      };
   };
 }

@@ -8,13 +8,14 @@
   };
 
   den.aspects.niri = {
-    nixos.programs.niri.enable = true;
-
     homeManager =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
+      let
+        niri-pkg = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+      in
       {
         imports = [ inputs.niri.homeModules.niri ];
-        programs.niri.package = pkgs.niri;
+        programs.niri.package = niri-pkg;
 
         home.sessionVariables = {
           XDG_CURRENT_DESKTOP = "niri";
@@ -23,12 +24,19 @@
           NIXOS_OZONE_WL = "1";
         };
 
-        home.packages = with pkgs; [
-          wl-clipboard
-          wayland-utils
-          xwayland-satellite
-          bibata-cursors
+        home.packages = [
+          niri-pkg
+          pkgs.wl-clipboard
+          pkgs.wayland-utils
+          pkgs.xwayland-satellite
+          pkgs.bibata-cursors
         ];
+
+        xdg.configFile."niri/config.kdl".text = ''
+          include "nix-generated-config.kdl"
+        '';
+
+        xdg.configFile.niri-config.target = lib.mkForce "niri/nix-generated-config.kdl";
 
         programs.niri.settings = {
           input.keyboard = {
@@ -247,7 +255,7 @@
             "Mod+S".action.screenshot = [ ];
             "Mod+Shift+S".action.screenshot-window = [ ];
 
-            "Mod+Shift+P".action.power-off-monitors = [ ];
+            "Mod+Shift+M".action.power-off-monitors = [ ];
 
             "Mod+Escape" = {
               allow-inhibiting = false;

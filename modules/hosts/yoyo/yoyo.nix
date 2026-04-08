@@ -5,6 +5,7 @@
   den.aspects.yoyo = {
     includes = [
       den.aspects.gui
+      den.aspects.power-management
     ];
 
     provides.to-users = {

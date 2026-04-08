@@ -2,6 +2,7 @@
   den.aspects.kitty.homeManager =
     { pkgs, ... }:
     {
+      fonts.fontconfig.enable = true;
       home.packages = with pkgs; [
         maple-mono.truetype
         maple-mono.NF-unhinted
