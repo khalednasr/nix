@@ -11,9 +11,22 @@
 
       den.aspects.kitty
       den.aspects.firefox
+      den.aspects.orcaslicer
+      den.aspects.social
 
       den.aspects.brightness-control
       den.aspects.bluetooth
+      den.aspects.printing
+      den.aspects.udiskie
     ];
+
+    homeManager =
+      { pkgs, ... }:
+      {
+        home.packages = with pkgs; [
+          caligula
+          vlc
+        ];
+      };
   };
 }

@@ -5,6 +5,7 @@
   den.aspects.yoyo = {
     includes = [
       den.aspects.gui
+      den.aspects.steam
       den.aspects.power-management
     ];
 
