@@ -149,6 +149,7 @@
             "Mod+Ctrl+Down".action.move-window-down = [ ];
             "Mod+Ctrl+Up".action.move-window-up = [ ];
             "Mod+Ctrl+Right".action.move-column-left = [ ];
+            "Mod+Ctrl+H".action.move-column-left = [ ];
             "Mod+Ctrl+L".action.move-column-right = [ ];
             "Mod+Ctrl+J".action.move-window-down-or-to-workspace-down = [ ];
             "Mod+Ctrl+K".action.move-window-up-or-to-workspace-up = [ ];

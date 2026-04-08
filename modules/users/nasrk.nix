@@ -38,6 +38,7 @@ in
 
         home.shellAliases = {
           nec = "cd ${repoDir} && nvim; cd -";
+          nrf = "cd ${repoDir} && nix run .#write-flake; cd -";
           nrb = "sudo nixos-rebuild switch --flake ${repoDir}";
           ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d";
 
