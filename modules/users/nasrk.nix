@@ -45,8 +45,11 @@ in
           ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d";
 
           nstatus = "cd ${repoDir}; git status; cd -";
-          npush = "cd ${repoDir}; git add --all; git commit -m 'update'; git push; cd -";
           npull = "cd ${repoDir}; git pull; cd -";
+        };
+
+        programs.fish.functions = {
+          ndev.body = "nix develop ${repoDir}#$argv -c fish";
         };
       };
   };
