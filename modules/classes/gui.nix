@@ -11,13 +11,16 @@
 
       den.aspects.kitty
       den.aspects.firefox
-      den.aspects.orcaslicer
       den.aspects.social
+
+      den.aspects.distrobox
+      den.aspects.quickemu
 
       den.aspects.brightness-control
       den.aspects.bluetooth
       den.aspects.printing
       den.aspects.udiskie
+      den.aspects.udev
     ];
 
     homeManager =

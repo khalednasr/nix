@@ -23,7 +23,7 @@ in
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsh8qoWRNPG1j6dY0bHzTiW/0c1kphmx+RgTLpGw59l"
           ];
 
-          extraGroups = [ "networkmanager" "i2c" ];
+          extraGroups = [ "networkmanager" "i2c" "plugdev" "docker" ];
         };
 
         console.keyMap = "de";

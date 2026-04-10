@@ -7,6 +7,7 @@
       den.aspects.gui
       den.aspects.steam
       den.aspects.power-management
+      den.aspects.orcaslicer
     ];
 
     provides.to-users = {
