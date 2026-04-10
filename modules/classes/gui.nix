@@ -4,14 +4,16 @@
     includes = [
       den.aspects.tui
 
+      den.aspects.kitty
+      den.aspects.firefox
+
       den.aspects.niri
       den.aspects.kitty-niri
+      den.aspects.firefox-niri
       den.aspects.noctalia
       den.aspects.noctalia-niri
       den.aspects.noctalia-kitty
 
-      den.aspects.kitty
-      den.aspects.firefox
       den.aspects.social
 
       den.aspects.distrobox
