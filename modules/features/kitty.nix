@@ -65,7 +65,8 @@
       };
     };
 
-  den.aspects.niri.homeManager.programs.niri.settings.binds = {
+  den.aspects.kitty-niri.homeManager.programs.niri.settings.binds = {
     "Mod+T".action.spawn = "kitty";
+    "Mod+E".action.spawn-sh = "kitty -e fish -c yazi";
   };
 }

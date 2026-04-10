@@ -5,6 +5,7 @@
       den.aspects.tui
 
       den.aspects.niri
+      den.aspects.kitty-niri
       den.aspects.noctalia
       den.aspects.noctalia-niri
       den.aspects.noctalia-kitty
