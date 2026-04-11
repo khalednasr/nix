@@ -4,6 +4,7 @@
     includes = [
       den.provides.hostname
       den.aspects.nix-settings
+      den.aspects.nix-ld
 
       den.aspects.ssh
       den.aspects.network-manager
