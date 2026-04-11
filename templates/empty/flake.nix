@@ -20,8 +20,7 @@
           devShells.default =
             with pkgs;
             mkShell {
-              packages = [ pixi ];
-              shellHook = ''eval "$(pixi shell-hook)"'';
+              packages = [ ];
             };
         };
     };
