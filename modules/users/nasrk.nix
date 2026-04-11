@@ -57,6 +57,11 @@ in
 
         programs.fish.functions = {
           ndev.body = "nix develop ${repoDir}#$argv -c fish";
+          ninit.body = ''
+            nix flake init -t ${repoDir}#$argv
+            echo "use flake" > .envrc
+            direnv allow
+          '';
         };
       };
   };
