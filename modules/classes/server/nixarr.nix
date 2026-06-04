@@ -2,7 +2,7 @@
 {
   flake-file.inputs.nixarr.url = "github:nix-media-server/nixarr";
 
-  aspects.numerino.nixos =
+  aspects.server.nixos =
     {
       lib,
       config,

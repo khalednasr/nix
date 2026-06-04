@@ -1,5 +1,5 @@
 {
-  aspects.numerino.nixos =
+  aspects.server.nixos =
     { lib, config, ... }:
     {
       users.users.deemix = {
@@ -7,6 +7,9 @@
         group = "media";
         uid = 941;
       };
+
+      virtualisation.docker.enable = true;
+      virtualisation.oci-containers.backend = "docker";
 
       virtualisation.oci-containers.containers.deemix = {
         image = "ghcr.io/bambanah/deemix:latest";

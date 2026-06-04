@@ -1,5 +1,5 @@
 {
-  aspects.numerino.nixos =
+  aspects.server.nixos =
     { lib, ... }:
     let
       mkStringOption = default: lib.mkOption { inherit default; type = lib.types.str; };

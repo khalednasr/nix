@@ -9,6 +9,7 @@
 
     includes = with config.flake.aspects; [
       tui
+      server
       niri
       noctalia
       adwaita-theme
@@ -35,9 +36,6 @@
 
         networking.interfaces.eno1.wakeOnLan.enable = true;
         networking.firewall.allowedUDPPorts = [ 9 ];
-
-        virtualisation.docker.enable = true;
-        virtualisation.oci-containers.backend = "docker";
 
         environment.systemPackages = [
           pkgs.vlc

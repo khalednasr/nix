@@ -1,5 +1,5 @@
 {
-  aspects.numerino.nixos =
+  aspects.server.nixos =
     { config, ... }:
     {
       services.syncthing = {

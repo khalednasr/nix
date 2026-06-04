@@ -2,7 +2,7 @@ let
   primaryUser = "nasrk";
 in
 {
-  aspects.numerino.nixos =
+  aspects.server.nixos =
     { lib, ... }:
     {
       users.groups = {

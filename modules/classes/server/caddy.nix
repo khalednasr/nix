@@ -2,7 +2,7 @@ let
   domainName = "nasrk.com";
 in
 {
-  aspects.numerino.nixos =
+  aspects.server.nixos =
     { config, pkgs, ... }:
     {
       services.caddy = {
