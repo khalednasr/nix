@@ -12,7 +12,7 @@
         image = "ghcr.io/bambanah/deemix:latest";
         ports = [ "6595:6595" ];
         volumes = [
-          "/state/deemix:/config"
+          "/data/state/deemix:/config"
           "/data/media/library/music:/downloads"
         ];
         environment = {

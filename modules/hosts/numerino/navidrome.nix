@@ -8,7 +8,7 @@
         user = "navidrome";
         group = "media";
         settings.MusicFolder = "/data/media/library/music";
-        settings.DataFolder = "/state/navidrome";
+        settings.DataFolder = "/data/state/navidrome";
       };
     };
 }

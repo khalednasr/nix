@@ -15,7 +15,7 @@
       nixarr = {
         enable = true;
         mediaDir = "/data/media";
-        stateDir = "/state/nixarr";
+        stateDir = "/data/state/nixarr";
 
         vpn = {
           enable = true;

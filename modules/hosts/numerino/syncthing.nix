@@ -6,7 +6,7 @@
         enable = true;
         user = "syncthing";
         group = "syncthing";
-        configDir = "/state/syncthing";
+        configDir = "/data/state/syncthing";
         dataDir = "/data/syncthing";
         cert = config.age.secrets.syncthing-cert.path;
         key = config.age.secrets.syncthing-key.path;
