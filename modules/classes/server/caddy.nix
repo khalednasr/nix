@@ -79,6 +79,11 @@ in
             abort @denied
             reverse_proxy localhost:5076
           '';
+          "upsnap.${domainName}".extraConfig = ''
+            @denied not remote_ip ${admin} ${shiru}
+            abort @denied
+            reverse_proxy localhost:8090
+          '';
         };
       };
     };

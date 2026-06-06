@@ -8,9 +8,6 @@
         uid = 941;
       };
 
-      virtualisation.docker.enable = true;
-      virtualisation.oci-containers.backend = "docker";
-
       virtualisation.oci-containers.containers.deemix = {
         image = "ghcr.io/bambanah/deemix:latest";
         ports = [ "6595:6595" ];

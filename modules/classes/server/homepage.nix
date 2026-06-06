@@ -6,15 +6,6 @@
         enable = true;
         allowedHosts = "*";
         environmentFiles = [ config.age.secrets.homepage-env.path ];
-        widgets = [
-          {
-            search = {
-              provider = "google";
-              target = "_self";
-              showSearchSuggestions = true;
-            };
-          }
-        ];
         settings.layout = [
           {
             Music = {
