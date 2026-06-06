@@ -1,5 +1,5 @@
 {
-  aspects.numerino.nixos =
+  aspects.boxy.nixos =
     {
       config,
       lib,
@@ -14,13 +14,11 @@
 
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
-      boot.kernelPackages = pkgs.linuxPackages_latest;
       boot.initrd.availableKernelModules = [
         "xhci_pci"
         "ahci"
         "nvme"
         "usbhid"
-        "usb_storage"
         "sd_mod"
       ];
       boot.initrd.kernelModules = [ ];
@@ -28,12 +26,12 @@
       boot.extraModulePackages = [ ];
 
       fileSystems."/" = {
-        device = "/dev/disk/by-uuid/038893de-c760-4429-908d-e7ec5351bfbb";
+        device = "/dev/disk/by-uuid/6ee2784e-074a-4676-900b-384ccf889cb9";
         fsType = "ext4";
       };
 
       fileSystems."/boot" = {
-        device = "/dev/disk/by-uuid/73B4-2ED5";
+        device = "/dev/disk/by-uuid/42CC-08DB";
         fsType = "vfat";
         options = [
           "fmask=0077"
@@ -46,9 +44,7 @@
         fsType = "ext4";
       };
 
-      swapDevices = [
-        { device = "/dev/disk/by-uuid/3683d90b-4302-4c47-adc7-f809aece4788"; }
-      ];
+      swapDevices = [ ];
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

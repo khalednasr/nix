@@ -1,16 +1,16 @@
 let
   keys = import ./keys.nix;
 
-  numerino = [
+  boxy = [
     keys.admin
-    keys.numerino.host
-    keys.numerino.nasrk
+    keys.boxy.host
+    keys.boxy.nasrk
   ];
 in
 {
-  "numerino/wireguard-conf.age".publicKeys = numerino;
-  "numerino/caddy-env.age".publicKeys = numerino;
-  "numerino/syncthing-cert.age".publicKeys = numerino;
-  "numerino/syncthing-key.age".publicKeys = numerino;
-  "numerino/homepage-env.age".publicKeys = numerino;
+  "boxy/wireguard-conf.age".publicKeys = boxy;
+  "boxy/caddy-env.age".publicKeys = boxy;
+  "boxy/syncthing-cert.age".publicKeys = boxy;
+  "boxy/syncthing-key.age".publicKeys = boxy;
+  "boxy/homepage-env.age".publicKeys = boxy;
 }

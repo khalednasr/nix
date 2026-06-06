@@ -18,7 +18,7 @@ in
 
           openssh.authorizedKeys.keys = with keys; [
             yoyo.nasrk
-            numerino.nasrk
+            boxy.nasrk
             phone.nasrk
           ];
 
