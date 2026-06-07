@@ -25,6 +25,7 @@
         sabnzbd = {
           enable = true;
           vpn.enable = true;
+          whitelistHostnames = [ "sabnzbd.nasrk.com" ];
           whitelistRanges = [
             "192.168.15.0/24"
             "100.64.0.0/10"
