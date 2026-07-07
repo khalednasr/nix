@@ -10,6 +10,7 @@
     includes = with config.flake.aspects; [
       gui
       nvidia
+      steam
     ];
 
     nixos =
@@ -19,6 +20,7 @@
         users.users.nasrk.extraGroups = [ "data" ];
 
         environment.systemPackages = with pkgs; [
+          kicad
           prusa-slicer
         ];
       };
