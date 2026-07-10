@@ -3,11 +3,12 @@
     nixos =
       { pkgs, ... }:
       {
+        networking.wireless.iwd.enable = true;
+
         networking.networkmanager = {
           enable = true;
-          plugins = with pkgs; [
-            networkmanager-openvpn
-          ];
+          wifi.powersave = false;
+          wifi.backend = "iwd";
         };
 
         # For internet sharing
