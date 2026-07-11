@@ -25,6 +25,7 @@ in
           extraGroups = [
             "wheel"
             "networkmanager"
+            "kvm"
             "i2c"
             "plugdev"
             "docker"

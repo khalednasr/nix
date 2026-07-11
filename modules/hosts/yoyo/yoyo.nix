@@ -10,8 +10,8 @@
     includes = with config.flake.aspects; [
       gui
       steam
+      windows
       orcaslicer
-
       nvidia-amd-hybrid
       power-management
     ];
@@ -27,6 +27,8 @@
         HandleLidSwitchExternalPower = "ignore";
         HandleLidSwitchDocked = "ignore";
       };
+
+      boot.kernelModules = [ "kvm-amd" ];
     };
 
     provides.niri.homeManager = {
