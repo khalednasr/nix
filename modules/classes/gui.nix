@@ -26,7 +26,6 @@
       { pkgs, ... }:
       {
         home.packages = with pkgs; [
-          rustdesk
           caligula
           vlc
           remmina
