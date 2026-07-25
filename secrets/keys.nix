@@ -11,6 +11,7 @@
   };
 
   toobig = {
+    host = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILjXald6GRP00uKksG9gQjrqCTk8qQhIKLh8TCM9wul8";
     nasrk = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDdtyVQ5BsNCqi590R4XJhkPCN6xLVWbktfnehAsx9zX";
   };
 

@@ -6,6 +6,12 @@ let
     keys.boxy.host
     keys.boxy.nasrk
   ];
+
+  toobig = [
+    keys.admin
+    keys.toobig.host
+    keys.toobig.nasrk
+  ];
 in
 {
   "boxy/wireguard-conf.age".publicKeys = boxy;

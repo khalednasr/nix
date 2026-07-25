@@ -5,7 +5,10 @@
     instantiate = inputs.nixpkgs.lib.nixosSystem;
     homeManagerNixosModule = inputs.home-manager.nixosModules.home-manager;
 
-    users = with config.flake.aspects; [ nasrk ];
+    users = with config.flake.aspects; [
+      nasrk
+      vincent
+    ];
 
     includes = with config.flake.aspects; [
       gui
@@ -14,10 +17,29 @@
     ];
 
     nixos =
-      { pkgs, ... }:
+      { pkgs, config, ... }:
       {
         users.groups.data = { };
         users.users.nasrk.extraGroups = [ "data" ];
+
+        networking = {
+          firewall.extraCommands = ''
+            iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+          '';
+
+          networkmanager.ensureProfiles.profiles.TIMSNet = {
+            connection = {
+              id = "TIMSNet";
+              type = "ethernet";
+              interface-name = "enp36s0f0";
+            };
+
+            ipv4 = {
+              address1 = "192.168.5.2/24";
+              method = "manual";
+            };
+          };
+        };
 
         environment.systemPackages = with pkgs; [
           kicad
