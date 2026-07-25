@@ -3,8 +3,7 @@
     { pkgs, ... }:
     {
       virtualisation.docker.enable = true;
-      environment.systemPackages = with pkgs; [
-        distrobox
-      ];
+      environment.systemPackages = [ pkgs.distrobox ];
+      environment.sessionVariables.DBX_CONTAINER_MANAGER = "docker";
     };
 }

@@ -32,6 +32,8 @@
           openvpn
           onlyoffice-desktopeditors
         ];
+
+        home.sessionPath = [ "$HOME/.local/bin" ];
       };
   };
 }
