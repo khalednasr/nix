@@ -29,6 +29,7 @@ let
         incsearch = true;
         scrolloff = 8;
         sidescrolloff = 8;
+        swapfile = false;
       };
 
       # Colorscheme
@@ -59,37 +60,25 @@ let
           nil_ls.enable = true;
 
           # Python
+          ruff.enable = true;
           basedpyright = {
             enable = true;
             settings = {
               basedpyright.analysis.typeCheckingMode = "off"; # sorry
             };
           };
-          ruff = {
-            enable = true;
-          };
 
           # Rust
           rust_analyzer = {
             enable = true;
-            installRustc = false;
-            installCargo = false;
+            installRustc = true;
+            installCargo = true;
+            installRustfmt = true;
           };
 
           # System verilog
-          svls = {
-            enable = true;
-          };
-        };
-      };
-
-      # Treesitter
-      plugins.treesitter = {
-        enable = true;
-        settings = {
-          auto_install = true;
-          highlight.enable = true;
-          indent.enable = true;
+          verible.enable = true;
+          svls.enable = true;
         };
       };
 
