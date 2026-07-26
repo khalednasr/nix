@@ -27,7 +27,6 @@ in
             "networkmanager"
             "kvm"
             "i2c"
-            "plugdev"
             "docker"
             "media"
           ];
