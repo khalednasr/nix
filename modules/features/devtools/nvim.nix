@@ -59,6 +59,9 @@ let
           # Nix
           nil_ls.enable = true;
 
+          # C/C++
+          clangd.enable = true;
+
           # Python
           ruff.enable = true;
           basedpyright = {
@@ -76,9 +79,34 @@ let
             installRustfmt = true;
           };
 
+          # Scala
+          metals.enable = true;
+
           # System verilog
-          verible.enable = true;
-          svls.enable = true;
+          svlangserver = {
+            enable = true;
+            package = pkgs.callPackage (
+              {
+                lib,
+                buildNpmPackage,
+                fetchFromGitHub,
+              }:
+
+              buildNpmPackage {
+                pname = "svlangserver";
+                version = "0.4.1";
+
+                src = fetchFromGitHub {
+                  owner = "imc-trading";
+                  repo = "svlangserver";
+                  rev = "0e5d6b3bf96412f492efbc0d34957a662a1adb9e";
+                  hash = "sha256-E39DIB4XTto3Fv6frgkIlSBIhROfatB9VOURpxBnUfc=";
+                };
+
+                npmDepsHash = "sha256-7j9TE1QkqymOWKjE1tSA8n9AJ2nSyjQoDq/8jptIPwY=";
+              }
+            ) { };
+          };
         };
       };
 
