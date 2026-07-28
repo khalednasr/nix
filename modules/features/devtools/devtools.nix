@@ -23,6 +23,7 @@ let
     pkgs.usbutils
     pkgs.gh
     pkgs.rsyncy
+    pkgs.nmap
   ];
 in
 {
