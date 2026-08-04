@@ -1,5 +1,12 @@
 {
   aspects.windows = {
+    nixos = {
+      systemd.tmpfiles.rules = [
+        "R! /tmp/storage-run-*/containers/"
+        "R! /tmp/storage-run-*/libpod/tmp/"
+      ];
+    };
+
     homeManager =
       { config, pkgs, ... }:
       {

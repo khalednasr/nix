@@ -14,6 +14,7 @@
       timezone
       tuigreet
       devtools
+      chrt
     ];
   };
 }
