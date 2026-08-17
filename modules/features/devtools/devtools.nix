@@ -1,7 +1,6 @@
 { self, ... }:
 let
   packages_from = pkgs: [
-    self.packages.${pkgs.stdenv.hostPlatform.system}.git
     self.packages.${pkgs.stdenv.hostPlatform.system}.yazi
     self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     self.packages.${pkgs.stdenv.hostPlatform.system}.tmux
@@ -44,7 +43,9 @@ in
     nixos =
       { pkgs, ... }:
       {
-        environment.systemPackages = packages_from pkgs;
+        environment.systemPackages = (packages_from pkgs) ++ [
+          self.packages.${pkgs.stdenv.hostPlatform.system}.git
+        ];
       };
   };
 }

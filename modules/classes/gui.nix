@@ -26,6 +26,7 @@
       { pkgs, ... }:
       {
         home.packages = with pkgs; [
+          vscode
           caligula
           vlc
           remmina
