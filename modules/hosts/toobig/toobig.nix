@@ -1,5 +1,7 @@
 { inputs, config, ... }:
 {
+  flake-file.inputs.gui-deps.url = "github:khalednasr/gui-deps";
+
   aspects.toobig = {
     type = "host";
     instantiate = inputs.nixpkgs.lib.nixosSystem;
@@ -44,6 +46,14 @@
         environment.systemPackages = with pkgs; [
           kicad
           prusa-slicer
+          uv
+          vscode
+        ];
+
+        environment.sessionVariables.LD_LIBRARY_PATH = inputs.gui-deps.makeLibraryPathWith pkgs [
+          pkgs.cudatoolkit
+          pkgs.cudaPackages.cudnn
+          "/run/opengl-driver"
         ];
       };
 
