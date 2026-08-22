@@ -26,6 +26,7 @@
       { pkgs, ... }:
       {
         home.packages = with pkgs; [
+          kicad
           vscode
           caligula
           vlc
