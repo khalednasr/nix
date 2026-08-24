@@ -12,7 +12,6 @@
       wireguard
       firewall
       timezone
-      tuigreet
       devtools
       chrt
     ];

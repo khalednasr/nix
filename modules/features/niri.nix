@@ -8,14 +8,17 @@
   };
 
   aspects.niri = {
+    nixos =
+      { pkgs, ... }:
+      {
+        programs.niri.enable = true;
+        programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+      };
+
     homeManager =
       { pkgs, lib, ... }:
-      let
-        niri-pkg = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
-      in
       {
         imports = [ inputs.niri.homeModules.niri ];
-        programs.niri.package = niri-pkg;
 
         home.sessionVariables = {
           XDG_CURRENT_DESKTOP = "niri";
@@ -25,7 +28,6 @@
         };
 
         home.packages = [
-          niri-pkg
           pkgs.wl-clipboard
           pkgs.wayland-utils
           pkgs.xwayland-satellite

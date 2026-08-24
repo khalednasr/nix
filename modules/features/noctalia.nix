@@ -1,14 +1,42 @@
-{ lib, inputs, ... }:
+{ inputs, ... }:
 {
   flake-file.inputs = {
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   aspects.noctalia = {
-    nixos.programs.dconf.enable = true;
+
+    nixos =
+      { pkgs, ... }:
+      {
+        programs.dconf.enable = true;
+
+        imports = [
+          inputs.noctalia-greeter.nixosModules.default
+        ];
+
+        programs.noctalia-greeter = {
+          enable = true;
+          settings = {
+            cursor = {
+              theme = "Bibata-Modern-Ice";
+              size = 24;
+              path = "${pkgs.bibata-cursors}/share/icons";
+            };
+            keyboard = {
+              layout = "de,us";
+            };
+          };
+        };
+      };
 
     homeManager =
       { pkgs, config, ... }:
@@ -17,92 +45,107 @@
           inputs.noctalia.homeModules.default
         ];
 
-        fonts.fontconfig.enable = true;
-        home.packages = with pkgs; [
-          ubuntu-sans
-          ubuntu-sans-mono
-          ubuntu-classic
-          papirus-icon-theme
-        ];
+        home.packages = with pkgs; [ papirus-icon-theme ];
 
-        programs.noctalia-shell = {
+        programs.noctalia = {
           enable = true;
 
-          plugins = {
-            sources = [
-              {
-                enabled = true;
-                name = "Official Noctalia Plugins";
-                url = "https://github.com/noctalia-dev/noctalia-plugins";
-              }
+          settings = {
+            bar.default = {
+              end = [
+                "tray"
+                "clipboard"
+                "network"
+                "bluetooth"
+                "volume"
+                "brightness"
+                "battery"
+                "control-center"
+                "session"
+              ];
+
+              start = [
+                "launcher"
+                "workspaces"
+                "wallpaper"
+                "wallhaven"
+                "media"
+              ];
+            };
+
+            plugins.enabled = [
+              "noctalia/wallhaven"
             ];
 
-            version = 2;
-          };
+            widget.wallhaven.type = "noctalia/wallhaven:wallhaven";
 
-          settings = {
-            settingsVersion = 59;
-            general.enableBlurBehind = false;
+            idle = {
+              behavior_order = [
+                "lock"
+                "screen-off"
+                "lock-and-suspend"
+              ];
 
-            colorSchemes = {
-              useWallpaperColors = true;
-              generationMethod = "tonal-spot";
-            };
+              behavior.lock = {
+                action = "lock";
+                enabled = true;
+                timeout = 600.0;
+              };
 
-            ui = {
-              fontDefault = "Ubuntu";
-              fontFixed = "Ubuntu Sans Mono";
-              panelsAttachedToBar = false;
-              settingsPanelMode = "centered";
-            };
+              behavior.lock-and-suspend = {
+                action = "lock_and_suspend";
+                enabled = false;
+                timeout = 900.0;
+              };
 
-            brightness = {
-              brightnessStep = 5;
-              enforceMinimum = true;
-              enableDdcSupport = true;
+              behavior.screen-off = {
+                action = "screen_off";
+                enabled = true;
+                timeout = 660.0;
+              };
             };
 
             location = {
-              autoLocate = true;
+              auto_locate = true;
             };
 
-            bar = {
-              useSeparateOpacity = true;
-              backgroundOpacity = 0;
-              density = "comfortable";
-              widgets = {
-                left = [
-                  { id = "Launcher"; }
-                  {
-                    id = "Workspace";
-                    hideUnoccupied = true;
-                    showApplications = true;
-                    labelMode = "none";
-                  }
-                  {
-                    id = "Spacer";
-                    width = 40;
-                  }
-                  {
-                    id = "MediaMini";
-                    hideMode = "hidden";
-                    showVisualizer = true;
-                  }
-                ];
-                center = [
-                  { id = "WallpaperSelector"; }
-                  { id = "Clock"; }
-                  { id = "Settings"; }
-                ];
-                right = [
-                  { id = "Tray"; }
-                  { id = "Volume"; }
-                  { id = "Brightness"; }
-                  { id = "Bluetooth"; }
-                  { id = "Network"; }
-                  { id = "Battery"; }
-                  { id = "ControlCenter"; }
-                ];
+            shell = {
+              polkit_agent = true;
+              greeter_sync.auto_sync = false;
+
+              panel = {
+                launcher_placement = "attached";
+                open_near_click_control_center = true;
+                open_near_click_launcher = true;
+                open_near_click_session = true;
+              };
+            };
+
+            theme = {
+              source = "community";
+              community_palette = "Rose Pine Moon";
+            };
+
+            widget = {
+              battery = {
+                display_mode = "graphic";
+                show_label = false;
+              };
+
+              brightness = {
+                show_label = false;
+              };
+
+              media = {
+                hide_when_no_media = true;
+              };
+
+              network = {
+                show_label = false;
+              };
+
+              volume = {
+                show_label = false;
               };
             };
           };
@@ -111,7 +154,7 @@
 
     provides.niri.homeManager = {
       programs.niri.settings = {
-        spawn-at-startup = [ { sh = "QS_ICON_THEME=Papirus-Dark noctalia-shell"; } ];
+        spawn-at-startup = [ { sh = "QS_ICON_THEME=Papirus-Dark noctalia"; } ];
 
         layer-rules = [
           {
@@ -121,10 +164,17 @@
         ];
 
         binds = {
-          "Mod+D".action.spawn-sh = "noctalia-shell ipc call launcher toggle";
-          "Mod+Shift+P".action.spawn-sh = "noctalia-shell ipc call sessionMenu toggle";
-          "XF86MonBrightnessUp".action.spawn-sh = "noctalia-shell ipc call brightness increase";
-          "XF86MonBrightnessDown".action.spawn-sh = "noctalia-shell ipc call brightness decrease";
+          "Mod+D".action.spawn-sh = "noctalia msg panel-toggle launcher";
+          "Mod+Shift+P".action.spawn-sh = "noctalia msg panel-toggle session";
+          "XF86MonBrightnessUp".action.spawn-sh = "noctalia msg brightness-up";
+          "XF86MonBrightnessDown".action.spawn-sh = "noctalia msg brightness-down";
+
+          "Mod+W".action.spawn-sh = ''
+            TERMINAL="kitty"
+            export TMUXP_CONFIGDIR="$HOME/.config/tmuxp"
+            SESSION_NAME=$(ls $TMUXP_CONFIGDIR | sed -e 's/\.yaml$//' | noctalia dmenu);
+            [ -n "$SESSION_NAME" ] && $TERMINAL tmuxp load --yes $SESSION_NAME
+          '';
         };
       };
 
@@ -132,50 +182,12 @@
         include optional=true "noctalia.kdl"
       '';
 
-      programs.noctalia-shell.settings.templates.activeTemplates = [
-        {
-          id = "niri";
-          enabled = true;
-        }
-      ];
+      programs.noctalia.settings.theme.templates.builtin_ids = [ "niri" ];
     };
 
     provides.kitty.homeManager = {
+      programs.noctalia.settings.theme.templates.builtin_ids = [ "kitty" ];
       programs.kitty.extraConfig = "include themes/noctalia.conf";
-
-      programs.noctalia-shell.settings = {
-        appLauncher = {
-          terminalCommand = "kitty -e";
-        };
-
-        templates.activeTemplates = [
-          {
-            id = "kitty";
-            enabled = true;
-          }
-        ];
-      };
     };
-
-    provides.fuzzel.homeManager =
-      { config, ... }:
-      {
-        programs.noctalia-shell.settings = {
-          templates.activeTemplates = [
-            {
-              id = "fuzzel";
-              enabled = true;
-            }
-          ];
-        };
-
-        programs.fuzzel.settings = {
-          main = {
-            include = "~/.config/fuzzel/themes/noctalia";
-            font = config.programs.noctalia-shell.settings.ui.fontDefault;
-          };
-        };
-      };
   };
-
 }

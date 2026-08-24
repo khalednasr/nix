@@ -6,7 +6,6 @@
       niri
       noctalia
       adwaita-theme
-      fuzzel
       kitty
       nemo
       vivaldi
@@ -14,7 +13,6 @@
       syncthing
       social
       distrobox
-      quickemu
       brightness-control
       bluetooth
       printing

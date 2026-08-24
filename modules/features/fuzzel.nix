@@ -1,4 +1,3 @@
-{ den, lib, ... }:
 {
   aspects.fuzzel = {
     homeManager = {
