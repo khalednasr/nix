@@ -12,23 +12,19 @@
       steam
       windows
       orcaslicer
-      nvidia-amd-hybrid
       power-management
     ];
 
     nixos = {
-      hardware.nvidia.prime = {
-        amdgpuBusId = "PCI:4:0:0";
-        nvidiaBusId = "PCI:1:0:0";
-      };
+      imports = [
+        inputs.nixos-hardware.nixosModules.lenovo-yoga-7-14ARH7-nvidia
+      ];
 
       services.logind.settings.Login = {
-        HandleLidSwitch = "poweroff";
+        HandleLidSwitch = "suspend";
         HandleLidSwitchExternalPower = "ignore";
         HandleLidSwitchDocked = "ignore";
       };
-
-      boot.kernelModules = [ "kvm-amd" ];
     };
 
     provides.niri.homeManager = {

@@ -17,8 +17,6 @@
     nixos =
       { pkgs, ... }:
       {
-        programs.dconf.enable = true;
-
         imports = [
           inputs.noctalia-greeter.nixosModules.default
         ];
@@ -165,7 +163,7 @@
 
         binds = {
           "Mod+D".action.spawn-sh = "noctalia msg panel-toggle launcher";
-          "Mod+Shift+P".action.spawn-sh = "noctalia msg panel-toggle session";
+          "Mod+P".action.spawn-sh = "noctalia msg panel-toggle session";
           "XF86MonBrightnessUp".action.spawn-sh = "noctalia msg brightness-up";
           "XF86MonBrightnessDown".action.spawn-sh = "noctalia msg brightness-down";
 

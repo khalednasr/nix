@@ -268,6 +268,26 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787144466,
+        "narHash": "sha256-HHfv2/HkNSKbbSyU9iD/g8lbP6r4tl33sSw1W4rXCk0=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "0471accf8d0a8210b31d947497d179ecc99e0021",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1754028485,
@@ -434,6 +454,7 @@
         "niri": "niri",
         "nix-wrapper-modules": "nix-wrapper-modules",
         "nixarr": "nixarr",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",
         "noctalia": "noctalia",

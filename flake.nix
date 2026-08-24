@@ -22,6 +22,10 @@
       url = "github:nix-media-server/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixvim.url = "github:nix-community/nixvim";
     noctalia = {
