@@ -27,6 +27,7 @@ let
 in
 {
   flake-file.inputs.nix-wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+  flake-file.inputs.nix-wrapper-modules.inputs.nixpkgs.follows = "nixpkgs";
 
   perSystem =
     { pkgs, ... }:

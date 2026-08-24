@@ -1,6 +1,7 @@
 { inputs, ... }:
 {
   flake-file.inputs.nixarr.url = "github:nix-media-server/nixarr";
+  flake-file.inputs.nixarr.inputs.nixpkgs.follows = "nixpkgs";
 
   aspects.server.nixos =
     {
