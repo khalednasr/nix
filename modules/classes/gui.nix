@@ -6,8 +6,8 @@
       niri
       noctalia
       adwaita-theme
+      gnome-apps
       kitty
-      nemo
       vivaldi
       vimium
       syncthing
@@ -29,8 +29,6 @@
           caligula
           vlc
           remmina
-          openvpn
-          onlyoffice-desktopeditors
         ];
 
         home.sessionPath = [ "$HOME/.local/bin" ];

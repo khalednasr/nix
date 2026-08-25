@@ -49,6 +49,16 @@
           enable = true;
 
           settings = {
+            control_center = {
+              width = 900;
+              shortcuts = [
+                { type = "wifi"; }
+                { type = "bluetooth"; }
+                { type = "caffeine"; }
+                { type = "power_profile"; }
+              ];
+            };
+
             bar.default = {
               end = [
                 "tray"

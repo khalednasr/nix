@@ -1,5 +1,5 @@
 {
-  aspects.nemo = {
+  aspects.gnome-apps = {
     nixos = {
       services.gvfs.enable = true;
     };
@@ -9,6 +9,10 @@
       {
         home.packages = with pkgs; [
           nemo
+          file-roller
+          nemo-fileroller
+          papers
+          loupe
         ];
       };
   };
