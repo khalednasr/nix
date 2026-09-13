@@ -39,7 +39,7 @@ fn main() -> ! {
         &mut pac.RESETS,
     );
 
-    let mut led_pin = pins.gpio12.into_push_pull_output();
+    let mut led_pin = pins.gpio25.into_push_pull_output();
 
     loop {
         led_pin.set_high();
