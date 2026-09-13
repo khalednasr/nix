@@ -29,6 +29,7 @@ in
             "i2c"
             "docker"
             "media"
+            "dialout"
           ];
         };
 

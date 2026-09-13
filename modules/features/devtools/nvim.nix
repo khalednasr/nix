@@ -5,6 +5,8 @@ let
   customPackage =
     pkgs:
     inputs.nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
+      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+
       extraPackages = with pkgs; [
         ripgrep
         fzf
@@ -534,6 +536,7 @@ in
 {
   flake-file.inputs = {
     nixvim.url = "github:nix-community/nixvim";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   perSystem =

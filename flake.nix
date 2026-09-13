@@ -10,6 +10,7 @@
     gui-deps.url = "github:khalednasr/gui-deps";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     import-tree.url = "github:vic/import-tree";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
