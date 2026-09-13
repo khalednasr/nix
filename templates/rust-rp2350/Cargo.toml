@@ -1,0 +1,30 @@
+[package]
+name = "rp2350-template"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cortex-m = "0.7"
+cortex-m-rt = "0.7"
+defmt = "1.1.1"
+defmt-rtt = "1.3.0"
+embedded-hal = "1.0.0"
+panic-probe = "1.0.0"
+
+rp235x-hal = { version = "0.3", features = [
+    "rt",
+    "critical-section-impl",
+    "binary-info",
+] }
+
+[profile.release]
+debug = 2
+debug-assertions = false
+lto = 'fat'
+opt-level = 3
+overflow-checks = false
+
+[profile.dev]
+debug = 2
+lto = true
+opt-level = "z"
