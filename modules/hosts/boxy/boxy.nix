@@ -10,13 +10,6 @@
     includes = with config.flake.aspects; [
       tui
       server
-      niri
-      fuzzel
-      kitty
-      nemo
-      vivaldi
-      vimium
-      udiskie
     ];
 
     nixos =

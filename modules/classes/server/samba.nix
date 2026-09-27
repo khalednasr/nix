@@ -19,7 +19,7 @@
             "browseable" = "yes";
             "read only" = "no";
             "hosts deny" = "0.0.0.0/0";
-            "hosts allow" = "${admin} ${shiru}";
+            "hosts allow" = "${admin} ${shiru} ${media}";
           };
 
           "sync" = {

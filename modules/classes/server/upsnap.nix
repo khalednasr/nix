@@ -6,5 +6,7 @@
       capabilities.NET_RAW = true;
       volumes = [ "/data/state/upsnap:/app/pb_data" ];
     };
+
+    networking.firewall.allowedTCPPorts = [ 8090 ];
   };
 }

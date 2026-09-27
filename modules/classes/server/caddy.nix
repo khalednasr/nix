@@ -10,7 +10,7 @@ in
         environmentFile = config.age.secrets.caddy-env.path;
         package = pkgs.caddy.withPlugins {
           plugins = [ "github.com/caddy-dns/cloudflare@v0.2.4" ];
-          hash = "sha256-bzMqxWTqrJ1skZmRTXyEMCKStXpljbqe5r0Ve2cnBfM=";
+          hash = "sha256-PWadA5qr/gR2qDcT8l8u1Xku7LM2HIfWTLOkzezCYy0=";
         };
 
         virtualHosts = with config.subnets; {
@@ -75,12 +75,12 @@ in
             reverse_proxy localhost:8384
           '';
           "hydra.${domainName}".extraConfig = ''
-            @denied not remote_ip ${admin} ${shiru}
+            @denied not remote_ip ${admin} ${shiru} ${media}
             abort @denied
             reverse_proxy localhost:5076
           '';
           "upsnap.${domainName}".extraConfig = ''
-            @denied not remote_ip ${admin} ${shiru}
+            @denied not remote_ip ${admin} ${shiru} ${steamdeck}
             abort @denied
             reverse_proxy localhost:8090
           '';
