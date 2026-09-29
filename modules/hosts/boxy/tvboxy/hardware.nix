@@ -4,7 +4,7 @@
     boot.kernelParams = [
       "intel_iommu=on"
       "iommu=pt"
-      "vfio-pci.ids=8086:4690"
+      "vfio-pci.ids=8086:4690,8086:7a88,8086:7ad0,8086:7aa3,8086:7aa4,8086:1a1c"
     ];
 
     boot.kernelModules = [
@@ -18,7 +18,7 @@
       SUBSYSTEM=="usb", ATTR{idVendor}=="1532", ATTR{idProduct}=="0099", GROUP="kvm"
     '';
 
-    networking.nat.externalInterface = "enp0s31f6";
+    networking.nat.externalInterface = "enp0s20f0u1";
 
     microvm.autostart = [ "tvboxy" ];
     microvm.vms.tvboxy = {
@@ -39,6 +39,10 @@
       {
         bus = "pci";
         path = "0000:00:02.0";
+      }
+      {
+        bus = "pci";
+        path = "0000:00:1f.3";
       }
       {
         bus = "usb";
