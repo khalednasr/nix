@@ -56,6 +56,14 @@
       }
     ];
 
+    microvm.volumes = [
+      {
+        image = "/state/vms/tvboxy.raw";
+        mountPoint = "/";
+        size = 131072;
+      }
+    ];
+
     microvm.qemu.extraArgs = [
       "-usb"
       "-vga"
@@ -66,5 +74,9 @@
       enable = true;
       extraPackages = with pkgs; [ vpl-gpu-rt ];
     };
+
+    hardware.firmware = [
+      pkgs.linux-firmware
+    ];
   };
 }
