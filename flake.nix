@@ -10,6 +10,10 @@
     gui-deps.url = "github:khalednasr/gui-deps";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     import-tree.url = "github:vic/import-tree";
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     niri = {
       url = "github:sodiboo/niri-flake";

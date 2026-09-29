@@ -13,6 +13,7 @@
       windows
       orcaslicer
       power-management
+      network-manager
     ];
 
     nixos = {

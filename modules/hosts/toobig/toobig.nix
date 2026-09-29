@@ -15,6 +15,7 @@
     includes = with config.flake.aspects; [
       gui
       nvidia
+      network-manager
       steam
     ];
 

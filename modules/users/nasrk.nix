@@ -15,6 +15,8 @@ in
           description = "Khaled Nasr";
 
           shell = shell_from pkgs;
+          
+          initialHashedPassword = "$y$j9T$/OZcE5O25UWX9sBH8CQt7/$zFA61usgR55p9qTT1xFrN2Sy2.ZAYI0VIntcOhXsoVB";
 
           openssh.authorizedKeys.keys = with keys; [
             yoyo.nasrk

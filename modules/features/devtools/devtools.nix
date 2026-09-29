@@ -20,6 +20,7 @@ let
     pkgs._7zz
     pkgs.sshfs
     pkgs.usbutils
+    pkgs.pciutils
     pkgs.gh
     pkgs.rsyncy
     pkgs.nmap

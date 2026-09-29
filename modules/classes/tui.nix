@@ -6,7 +6,6 @@
       nix-ld
       agenix
       ssh
-      network-manager
       avahi
       tailscale
       wireguard
