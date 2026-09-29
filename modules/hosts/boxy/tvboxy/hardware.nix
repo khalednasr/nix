@@ -5,19 +5,12 @@
       "intel_iommu=on"
       "iommu=pt"
       "vfio-pci.ids=8086:4690"
-      "video=efifb:off"
-      "modprobe.blacklist=i915,xe"
     ];
 
     boot.kernelModules = [
       "vfio"
       "vfio_pci"
       "vfio_iommu_type1"
-    ];
-
-    boot.blacklistedKernelModules = [
-      "i915"
-      "xe"
     ];
 
     services.udev.extraRules = ''
@@ -40,11 +33,12 @@
     microvm.vcpu = 6;
     microvm.mem = 8096;
 
+    microvm.qemu.extraArgs = [ "-usb" ];
+
     microvm.devices = [
       {
         bus = "pci";
         path = "0000:00:02.0";
-        qemu.deviceExtraArgs = "x-igd-opregion=on";
       }
       {
         bus = "usb";
@@ -64,19 +58,11 @@
       }
     ];
 
-    microvm.qemu.extraArgs = [
-      "-usb"
-      "-vga"
-      "none"
-    ];
+    hardware.firmware = [ pkgs.linux-firmware ];
 
     hardware.graphics = {
       enable = true;
-      extraPackages = with pkgs; [ vpl-gpu-rt ];
+      extraPackages = [ pkgs.vpl-gpu-rt ];
     };
-
-    hardware.firmware = [
-      pkgs.linux-firmware
-    ];
   };
 }
