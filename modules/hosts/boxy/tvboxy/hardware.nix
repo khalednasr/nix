@@ -14,15 +14,25 @@
     ];
 
     services.udev.extraRules = ''
-      SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c52b", GROUP="kvm"
-      SUBSYSTEM=="usb", ATTR{idVendor}=="1532", ATTR{idProduct}=="0099", GROUP="kvm"
+      SUBSYSTEM=="usb", GROUP="kvm"
     '';
 
     networking.nat.externalInterface = "enp0s20f0u1";
 
-    microvm.autostart = [ "tvboxy" ];
-    microvm.vms.tvboxy = {
-      evaluatedConfig = config.flake.nixosConfigurations.tvboxy;
+    microvm.vms.tvboxy.autostart = false;
+    microvm.vms.tvboxy.evaluatedConfig = config.flake.nixosConfigurations.tvboxy;
+    systemd.services."microvm@tvboxy".serviceConfig.Restart = "no";
+
+    services.logind.enable = true;
+    services.logind.settings.Login.HandleSuspendKey = "ignore";
+
+    services.keyd = {
+      enable = true;
+
+      keyboards.default = {
+        ids = [ "1997:2433" ]; # air mouse
+        settings.main.sleep = "command(systemctl start microvm@tvboxy.service)";
+      };
     };
   };
 
@@ -46,11 +56,11 @@
       }
       {
         bus = "usb";
-        path = "vendorid=0x046d,productid=0xc52b";
+        path = "vendorid=0x1997,productid=0x2433"; # airmouse
       }
       {
         bus = "usb";
-        path = "vendorid=0x1532,productid=0x0099";
+        path = "vendorid=0x28de,productid=0x1304"; # steam controller
       }
     ];
 

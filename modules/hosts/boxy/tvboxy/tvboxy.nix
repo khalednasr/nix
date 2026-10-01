@@ -10,12 +10,16 @@
     includes = with config.flake.aspects; [
       microvm-guest
       tui
+      steam
     ];
 
     nixos =
       { pkgs, ... }:
       {
         services.displayManager.sddm.enable = true;
+        services.displayManager.autoLogin.enable = true;
+        services.displayManager.autoLogin.user = "nasrk";
+
         services.desktopManager.plasma6.enable = true;
       };
   };
