@@ -60,6 +60,10 @@
       }
       {
         bus = "usb";
+        path = "vendorid=0x2357,productid=0x0604"; # bluetooth
+      }
+      {
+        bus = "usb";
         path = "vendorid=0x28de,productid=0x1304"; # steam controller
       }
     ];
@@ -78,5 +82,8 @@
       enable = true;
       extraPackages = [ pkgs.vpl-gpu-rt ];
     };
+
+    hardware.bluetooth.enable = true;
+    hardware.bluetooth.powerOnBoot = true;
   };
 }
