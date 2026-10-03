@@ -32,6 +32,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
     noctalia = {
       url = "github:noctalia-dev/noctalia";
