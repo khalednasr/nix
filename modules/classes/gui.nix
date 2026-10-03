@@ -19,6 +19,7 @@
       udiskie
       udev
       flatpak
+      waydroid
     ];
 
     homeManager =
