@@ -24,6 +24,11 @@ in
             abort @denied
             reverse_proxy localhost:8082
           '';
+          "aiostreams.${domainName}".extraConfig = ''
+            @denied not remote_ip ${admin} ${shiru}
+            abort @denied
+            reverse_proxy localhost:3000
+          '';
           "sabnzbd.${domainName}".extraConfig = ''
             @denied not remote_ip ${admin} ${shiru} ${media}
             abort @denied

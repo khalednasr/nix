@@ -44,6 +44,8 @@
         fsType = "ext4";
       };
 
+      networking.nat.externalInterface = "enp0s20f0u1";
+
       swapDevices = [ ];
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

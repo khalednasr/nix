@@ -17,8 +17,6 @@
       SUBSYSTEM=="usb", GROUP="kvm"
     '';
 
-    networking.nat.externalInterface = "enp0s20f0u1";
-
     microvm.vms.tvboxy.autostart = false;
     microvm.vms.tvboxy.evaluatedConfig = config.flake.nixosConfigurations.tvboxy;
     systemd.services."microvm@tvboxy".serviceConfig.Restart = "no";
