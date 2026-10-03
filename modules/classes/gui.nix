@@ -18,6 +18,7 @@
       printing
       udiskie
       udev
+      flatpak
     ];
 
     homeManager =
