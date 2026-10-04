@@ -19,11 +19,6 @@ in
               dns cloudflare {$CLOUDFLARE_API_KEY}
             }
           '';
-          "home.${domainName}".extraConfig = ''
-            @denied not remote_ip ${admin} ${shiru}
-            abort @denied
-            reverse_proxy localhost:8082
-          '';
           "aiostreams.${domainName}".extraConfig = ''
             @denied not remote_ip ${admin} ${shiru} ${media}
             abort @denied
@@ -33,36 +28,6 @@ in
             @denied not remote_ip ${admin} ${shiru} ${media}
             abort @denied
             reverse_proxy localhost:6336
-          '';
-          "prowlarr.${domainName}".extraConfig = ''
-            @denied not remote_ip ${admin}
-            abort @denied
-            reverse_proxy localhost:9696
-          '';
-          "sonarr.${domainName}".extraConfig = ''
-            @denied not remote_ip ${admin} ${shiru} ${media}
-            abort @denied
-            reverse_proxy localhost:8989
-          '';
-          "radarr.${domainName}".extraConfig = ''
-            @denied not remote_ip ${admin} ${shiru} ${media}
-            abort @denied
-            reverse_proxy localhost:7878
-          '';
-          "bazarr.${domainName}".extraConfig = ''
-            @denied not remote_ip ${admin} ${shiru} ${media}
-            abort @denied
-            reverse_proxy localhost:6767
-          '';
-          "seerr.${domainName}".extraConfig = ''
-            @denied not remote_ip ${admin} ${shiru} ${media}
-            abort @denied
-            reverse_proxy localhost:5055
-          '';
-          "jellyfin.${domainName}".extraConfig = ''
-            @denied not remote_ip ${admin} ${shiru} ${media}
-            abort @denied
-            reverse_proxy localhost:8096
           '';
           "deemix.${domainName}".extraConfig = ''
             @denied not remote_ip ${admin} ${shiru} ${media}

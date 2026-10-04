@@ -14,11 +14,9 @@ let
   ];
 in
 {
-  "boxy/wireguard-conf.age".publicKeys = boxy;
   "boxy/caddy-env.age".publicKeys = boxy;
   "boxy/syncthing-cert.age".publicKeys = boxy;
   "boxy/syncthing-key.age".publicKeys = boxy;
-  "boxy/homepage-env.age".publicKeys = boxy;
   "boxy/aiostreams-env.age".publicKeys = boxy;
   "boxy/glutun-nordvpn-env.age".publicKeys = boxy;
 }

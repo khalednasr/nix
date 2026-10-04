@@ -1,68 +1,39 @@
 {
   aspects.server.nixos =
-    {
-      pkgs,
-      lib,
-      config,
-      ...
-    }:
+    { pkgs, config, ... }:
     {
       virtualisation.oci-containers.containers.aiostreams = {
         image = "ghcr.io/viren070/aiostreams:latest";
         volumes = [ "/state/aiostreams:/app/data" ];
-        dependsOn = [ "aiostreams-glutun" ];
-        extraOptions = [ "--network=container:aiostreams-glutun" ];
+        dependsOn = [ "glutun" ];
+        extraOptions = [ "--network=container:glutun" ];
         environmentFiles = [ config.age.secrets.aiostreams-env.path ];
       };
 
-      virtualisation.oci-containers.containers.aiostreams-glutun = {
-        image = "qmcgaw/gluetun:latest";
-        capabilities.NET_ADMIN = true;
-        devices = [ "/dev/net/tun:/dev/net/tun" ];
-        ports = [ "3000:3000" ];
-        environmentFiles = [ config.age.secrets.glutun-nordvpn-env.path ];
+      virtualisation.oci-containers.containers.nzbhydra = {
+        image = "lscr.io/linuxserver/nzbhydra2:latest";
+        volumes = [ "/state/nzbhydra:/config" ];
+        dependsOn = [ "glutun" ];
+        extraOptions = [ "--network=container:glutun" ];
       };
 
-      systemd.services.aiostreams-gluetun-connectivity-check = {
-        serviceConfig = {
-          Type = "oneshot";
-
-          ExecStart = pkgs.writeShellScript "check-gluetun-connectivity" ''
-            set -eu
-
-            CONTAINER="aiostreams-glutun"
-
-            if ! ${pkgs.docker}/bin/docker inspect "$CONTAINER" >/dev/null 2>&1; then
-              echo "Container $CONTAINER does not exist"
-              exit 0
-            fi
-
-            if ! ${pkgs.docker}/bin/docker inspect \
-                --format '{{.State.Running}}' \
-                "$CONTAINER" | ${pkgs.gnugrep}/bin/grep -q true; then
-              echo "Container $CONTAINER is not running"
-              exit 0
-            fi
-
-            if ! ${pkgs.docker}/bin/docker exec "$CONTAINER" \
-                /bin/sh -c 'wget -q --timeout=10 --spider https://www.google.com'; then
-              echo "Internet connectivity through Gluetun failed; restarting container"
-              ${pkgs.systemd}/bin/systemctl restart docker-"$CONTAINER".service
-            else
-              echo "Gluetun internet connectivity OK"
-            fi
-          '';
-        };
+      virtualisation.oci-containers.containers.sabnzbd = {
+        image = "lscr.io/linuxserver/sabnzbd:latest";
+        environment.UMASK = "002";
+        environment.PGID = builtins.toString config.users.groups.media.gid;
+        volumes = [
+          "/state/sabnzbd:/config"
+          "/data/media/downloads:/downloads"
+          "/data/media/.incomplete-downloads:/incomplete-downloads"
+        ];
+        dependsOn = [ "glutun" ];
+        extraOptions = [ "--network=container:glutun" ];
       };
 
-      systemd.timers.gluetun-connectivity-check = {
-        wantedBy = [ "timers.target" ];
-
-        timerConfig = {
-          OnBootSec = "1min";
-          OnUnitActiveSec = "1min";
-          Unit = "aiostreams-gluetun-connectivity-check.service";
-        };
-      };
+      virtualisation.oci-containers.containers.glutun.ports = [
+        "3000:3000" # aiostreams
+        "5076:5076" # nzbhydra
+        "6336:6336" # sabnzbd
+      ];
     };
 }
