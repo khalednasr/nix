@@ -28,6 +28,12 @@
       };
     };
 
+    homeManager = { pkgs, ... }: {
+      home.packages = [
+        pkgs.stremio-linux-shell
+      ];
+    };
+
     provides.niri.homeManager = {
       programs.niri.settings.outputs = {
         "California Institute of Technology 0x1410 Unknown" = {
