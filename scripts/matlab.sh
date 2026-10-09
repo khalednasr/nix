@@ -33,5 +33,6 @@ distrobox enter "$CONTAINER_NAME" -- $TMPDIR/install
 
 echo "Installation complete!" 
 echo "use:"
-echo "    distrobox-enter $CONTAINER_NAME -- distrobox-export --bin <binary-path> --export-path <destination-folder>"
+echo "    distrobox-enter $CONTAINER_NAME -- distrobox-export --bin bash "--login -c <binary-path>" --export-path <destination-folder>"
 echo "to export binaries to host"
+echo "then edit the resulting script to wrap the binary in a bash --login -c call"
