@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 let
   packages_from = pkgs: [
     self.packages.${pkgs.stdenv.hostPlatform.system}.yazi
@@ -24,6 +24,7 @@ let
     pkgs.gh
     pkgs.rsyncy
     pkgs.nmap
+    inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.h5v
   ];
 in
 {

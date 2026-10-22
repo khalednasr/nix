@@ -66,12 +66,13 @@ let
 
           # Python
           ruff.enable = true;
-          basedpyright = {
-            enable = true;
-            settings = {
-              basedpyright.analysis.typeCheckingMode = "off"; # sorry
-            };
-          };
+          ty.enable = true;
+          # basedpyright = {
+          #   enable = true;
+          #   settings = {
+          #     basedpyright.analysis.typeCheckingMode = "off"; # sorry
+          #   };
+          # };
 
           # Rust
           rust_analyzer = {
