@@ -34,7 +34,7 @@ in
         imports = [ host.homeManagerNixosModule ];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.backupFileExtension = "backup";
+        home-manager.backupCommand = "rm";
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users = builtins.listToAttrs (
           map (user: {
