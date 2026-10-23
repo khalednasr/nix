@@ -16,10 +16,12 @@
       network-manager
     ];
 
-    nixos = {
+    nixos = { pkgs, ... }: {
       imports = [
         inputs.nixos-hardware.nixosModules.lenovo-yoga-7-14ARH7-nvidia
       ];
+
+      boot.kernelPackages = pkgs.linuxPackages_zen;
 
       services.logind.settings.Login = {
         HandleLidSwitch = "suspend";
