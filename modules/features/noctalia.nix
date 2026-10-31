@@ -117,6 +117,8 @@
               auto_locate = true;
             };
 
+            brightness.enable_ddcutil = true;
+
             shell = {
               polkit_agent = true;
               greeter_sync.auto_sync = false;
