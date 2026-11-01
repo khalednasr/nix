@@ -58,14 +58,10 @@
         ];
       };
 
-    provides.niri.homeManager = {
-      programs.niri.settings.outputs = {
+    provides.umbriel.homeManager = {
+      programs.umbriel.settings.output = {
         "Dell Inc. DELL S2721QSA 45QKZY3" = {
-          mode = {
-            width = 3840;
-            height = 2160;
-            refresh = 59.997;
-          };
+          mode = "3840x2160@60";
           scale = 1.5;
         };
       };

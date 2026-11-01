@@ -93,9 +93,9 @@
         };
     };
 
-  aspects.vivaldi.provides.niri.homeManager = {
-    programs.niri.settings.binds = {
-      "Mod+B".action.spawn = "vivaldi";
+  aspects.vivaldi.provides.umbriel.homeManager = {
+    programs.umbriel.settings.keybinds = {
+      "Mod+B" = "spawn vivaldi";
     };
   };
 }

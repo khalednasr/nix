@@ -36,22 +36,14 @@
       ];
     };
 
-    provides.niri.homeManager = {
-      programs.niri.settings.outputs = {
+    provides.umbriel.homeManager = {
+      programs.umbriel.settings.output = {
         "California Institute of Technology 0x1410 Unknown" = {
-          mode = {
-            width = 3072;
-            height = 1920;
-            refresh = 120.002;
-          };
+          mode = "3072x1920@120";
           scale = 1.75;
         };
         "ASUSTek COMPUTER INC VG27A NCLMQS018692" = {
-          mode = {
-            width = 2560;
-            height = 1440;
-            refresh = 144.006;
-          };
+          mode = "2560x1440@144";
           scale = 1.0;
         };
       };

@@ -67,21 +67,21 @@
         };
       };
 
-    provides.niri.homeManager = {
-      programs.niri.settings = {
-        binds = {
-          "Mod+X" = {
-            action.spawn-sh = ''
-              systemctl --user start podman-windows.service
-              remmina -c ~/.local/share/windows/windows.remmina
-            '';
-          };
+    provides.umbriel.homeManager = {
+      programs.umbriel.settings = {
+        keybinds = {
+          "Mod+X" = ''
+            spawn sh -c '
+                        systemctl --user start podman-windows.service
+                        remmina -c ~/.local/share/windows/windows.remmina
+                        '
+          '';
 
-          "Mod+Shift+X" = {
-            action.spawn-sh = ''
-              systemctl --user stop podman-windows.service
-            '';
-          };
+          "Mod+Shift+X" = ''
+            spawn sh -c '
+                        systemctl --user stop podman-windows.service
+                        '
+          '';
         };
       };
     };

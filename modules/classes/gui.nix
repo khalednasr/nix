@@ -3,11 +3,11 @@
   aspects.gui = {
     includes = with config.flake.aspects; [
       tui
-      niri
+      umbriel
       noctalia
       adwaita-theme
       gnome-apps
-      kitty
+      ghostty
       vivaldi
       vimium
       syncthing

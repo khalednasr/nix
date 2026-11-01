@@ -100,9 +100,9 @@
     };
   };
 
-  aspects.firefox.provides.niri.homeManager = {
-    programs.niri.settings.binds = {
-      "Mod+B".action.spawn = "firefox";
+  aspects.firefox.provides.umbriel.homeManager = {
+    programs.umbriel.settings.keybinds = {
+      "Mod+B" = "spawn firefox";
     };
   };
 }
