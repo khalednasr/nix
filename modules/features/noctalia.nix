@@ -59,17 +59,23 @@
               ];
             };
 
+            dock = {
+              active_monitor_only = true;
+              enabled = true;
+              launcher_position = "end";
+              position = "right";
+              show_dots = true;
+            };
+
             bar.default = {
               end = [
                 "tray"
-                "clipboard"
+                "notes"
                 "network"
                 "bluetooth"
                 "volume"
                 "brightness"
                 "battery"
-                "control-center"
-                "session"
               ];
 
               start = [
@@ -79,13 +85,21 @@
                 "wallhaven"
                 "media"
               ];
+
+              center = [
+                "control-center"
+                "clock"
+                "session"
+              ];
             };
 
             plugins.enabled = [
               "noctalia/wallhaven"
+              "noctalia/notes"
             ];
 
             widget.wallhaven.type = "noctalia/wallhaven:wallhaven";
+            widget.notes.type = "noctalia/notes:notes";
 
             idle = {
               behavior_order = [
@@ -121,6 +135,7 @@
 
             shell = {
               polkit_agent = true;
+              clipboard_enabled = false;
               greeter_sync.auto_sync = false;
 
               panel = {
@@ -179,6 +194,7 @@
         keybinds = {
           "Mod+D" = "spawn noctalia msg panel-toggle launcher";
           "Mod+P" = "spawn noctalia msg panel-toggle session";
+          "Mod+N" = "spawn noctalia msg panel-toggle noctalia/notes:panel";
 
           "Alt+Tab" = "spawn noctalia msg window-switcher hold";
           "Alt+Shift+Tab" = "spawn noctalia msg window-switcher hold reverse";

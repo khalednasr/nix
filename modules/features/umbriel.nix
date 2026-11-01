@@ -41,7 +41,8 @@
               layout = "de";
             };
 
-            input.mouse.natural_scroll = true;
+            input.mouse.natural_scroll = false;
+            input.touchpad.natural_scroll = false;
 
             input.cursor = {
               theme = "Bibata-Modern-Ice";
@@ -58,7 +59,7 @@
               ];
               scrolling = {
                 default_extent_fraction = 0.667;
-                center_focused = "on_overflow";
+                center_focused = "always";
               };
             };
 
@@ -75,8 +76,8 @@
 
               "Mod+Q" = "window-close";
 
-              "Mod+N" = "workspace-set-layout toggle scrolling dwindle";
-              "Mod+M" = "workspace-set-layout stacking";
+              "Mod+U" = "workspace-set-layout toggle scrolling dwindle";
+              "Mod+I" = "workspace-set-layout stacking";
 
               "Mod+H" = "window-focus-or-output-left";
               "Mod+L" = "window-focus-or-output-right";

@@ -37,8 +37,13 @@
     };
 
     provides.umbriel.homeManager = {
+      programs.umbriel.settings.events = {
+        lid_close = "umbriel msg output-disable eDP-1";
+        lid_open = "umbriel msg output-enable eDP-1";
+      };
+
       programs.umbriel.settings.output = {
-        "California Institute of Technology 0x1410 Unknown" = {
+        "eDP-1" = {
           mode = "3072x1920@120";
           scale = 1.75;
         };
